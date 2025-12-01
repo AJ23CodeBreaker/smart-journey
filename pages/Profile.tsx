@@ -78,4 +78,80 @@ export const Profile = () => {
 
             {/* Appearance Card */}
             <div className="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700">
-                <h3 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-
+                <h3 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                  <span>🎨</span> Appearance
+                </h3>
+                <div className="flex gap-2">
+                   <button 
+                     onClick={toggleTheme}
+                     className={`flex-1 py-2 rounded-lg font-bold text-sm border-2 transition ${theme === 'light' ? 'bg-brand-100 border-brand-200 text-brand-700' : 'bg-slate-100 border-transparent text-slate-500 hover:border-slate-300'}`}
+                   >
+                     Light
+                   </button>
+                   <button 
+                     onClick={toggleTheme}
+                     className={`flex-1 py-2 rounded-lg font-bold text-sm border-2 transition ${theme === 'dark' ? 'bg-slate-700 border-slate-600 text-white' : 'bg-slate-100 border-transparent text-slate-500 hover:border-slate-300'}`}
+                   >
+                     Dark
+                   </button>
+                </div>
+            </div>
+        </div>
+
+        {/* Right Col: Settings */}
+        <div className="md:col-span-2 space-y-6">
+            
+            {/* Password Change */}
+            <div className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-slate-100 dark:border-slate-700">
+               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">{t('changePassword')}</h3>
+               
+               {message && <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-xl text-sm font-bold">{message}</div>}
+               {error && <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-xl text-sm font-bold">{error}</div>}
+
+               <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{t('newPassword')}</label>
+                    <input 
+                      type="password" 
+                      value={newPass}
+                      onChange={(e) => setNewPass(e.target.value)}
+                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 rounded-xl focus:border-brand-500 outline-none transition dark:text-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">{t('confirmPassword')}</label>
+                    <input 
+                      type="password" 
+                      value={confirmPass}
+                      onChange={(e) => setConfirmPass(e.target.value)}
+                      className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 rounded-xl focus:border-brand-500 outline-none transition dark:text-white"
+                    />
+                  </div>
+                  <div className="pt-2">
+                    <button type="submit" className="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl transition shadow-lg">
+                      {t('submit')}
+                    </button>
+                  </div>
+               </form>
+            </div>
+
+            {/* Admin Panel */}
+            {isAdmin && (
+              <div className="bg-slate-900 text-white p-8 rounded-3xl shadow-lg border border-slate-700 relative overflow-hidden">
+                 <div className="absolute top-0 right-0 p-4 opacity-10 text-6xl">🛡️</div>
+                 <h3 className="text-xl font-bold mb-2">Admin Database</h3>
+                 <p className="text-slate-400 text-sm mb-6">Download user records including passwords.</p>
+                 <button 
+                   onClick={handleDownloadUsers}
+                   className="w-full bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-xl font-bold border border-slate-600 transition flex items-center justify-center gap-2"
+                 >
+                   <span>⬇️</span> Download User Data (.txt)
+                 </button>
+              </div>
+            )}
+
+        </div>
+      </div>
+    </div>
+  );
+};
