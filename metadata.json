@@ -1,0 +1,5 @@
+{
+  "name": "$mart Journey",
+  "description": "A gamified financial literacy application for Hong Kong tertiary students based on IFEC guidelines. Features multi-language support, progressive learning levels (Bronze to Gold), and AI-generated scenarios.",
+  "requestFramePermissions": []
+}
