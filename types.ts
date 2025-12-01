@@ -1,8 +1,3 @@
-// Declare global constant defined in vite.config.ts
-declare global {
-  const __APP_VERSION__: string;
-}
-
 export enum Language {
   EN = 'en',
   ZH_HK = 'zh-hk',
