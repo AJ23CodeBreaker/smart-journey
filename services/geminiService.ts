@@ -23,16 +23,12 @@ export const getAiAdvisorResponse = async (
 ): Promise<string> => {
   try {
     // API Key Handling
-    let apiKey = '';
-    try {
-      // @ts-ignore
-      if (typeof process !== 'undefined' && process.env) {
-        // @ts-ignore
-        apiKey = process.env.API_KEY || '';
-      }
-    } catch (e) {
-      console.warn("Process env access failed");
-    }
+    // Access the global variable injected by Vite at build time
+    const apiKey = __API_KEY__;
+
+    // --- DEBUG LOG ---
+    console.log(`[Gemini Service] API Key Status: ${apiKey ? 'Present' : 'Missing'}`);
+    // -----------------
 
     if (!apiKey) {
       return language === Language.EN 
